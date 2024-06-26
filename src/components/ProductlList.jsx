@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Product from "./Product";
+import Title from "./Title";
+// import { storeProducts } from "../../data";
+import { ProductConsumer } from "./context";
 
 function ProductList(){
-
+// const [products, setProducts] = useState(storeProducts)
 
     return (
-        <div>
-            <Product/>
+        <>
+        <div className="py-5">
+            <div className="container">
+                <Title name={"our"} title={"products"}/>
+                <div className="row">
+                    <ProductConsumer>
+                       {(hello)=>{
+                        return <h1>{hello}</h1>
+                       }} 
+                    </ProductConsumer>
+                </div>
+            </div>
         </div>
-    )
+        </>
+
+)
 }
 
 
