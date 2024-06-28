@@ -14,9 +14,13 @@ function ProductList(){
                 <Title name={"our"} title={"products"}/>
                 <div className="row">
                     <ProductConsumer>
-                       {(hello)=>{
-                        return <h1>{hello}</h1>
-                       }} 
+                       {(value)=>{
+                            
+                            return value.products.map((product) =>{
+                                return <Product key={product.id} product={product} />
+                            })
+                            
+                       }}
                     </ProductConsumer>
                 </div>
             </div>
