@@ -14,8 +14,19 @@ function ProductProvider({children}){
        setProducts() 
     }, [])
 
-    function handleDetail(){
-        console.log("hello from detail")
+
+    const getDetail = (id) =>{
+        const product = items.products.find((item)=> item.id === id )
+        return product
+    } 
+
+    function handleDetail(id){
+        const product = getDetail(id)
+        setItems((prev)=>{
+            return{
+                ...prev, detailProduct: product
+            }
+        })
     }
 
     const setProducts=() =>{
@@ -25,12 +36,15 @@ function ProductProvider({children}){
             temProducts = [...temProducts, singleItem]
         })
         setItems(()=>{
-            return {products:temProducts}
+            return {
+                products:temProducts,
+                detailProduct: detailProduct
+             }
         })
     }
 
-    function addToCart(){
-        console.log("hello from detail")
+    function addToCart(id){
+        let tempPtoducts
     }
     
     return(
