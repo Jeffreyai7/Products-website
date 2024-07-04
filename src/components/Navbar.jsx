@@ -7,7 +7,6 @@ import styled from "styled-components";
 
 function Navbar(){
 
-
     return(
         <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5">
                 <Link to="/">

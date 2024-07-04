@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useEffect, useState } from 'react'
 import { storeProducts, detailProduct } from '../../data';
 const ProductContext = createContext();
 
@@ -7,7 +7,10 @@ function ProductProvider({children}){
 
     const [items, setItems] = useState({
         products : [],
-        detailProduct: detailProduct
+        detailProduct: detailProduct,
+        cart: [],
+        modalOpen:true,
+        modalProduct:detailProduct
     })
 
     useEffect(() =>{
@@ -28,6 +31,26 @@ function ProductProvider({children}){
             }
         })
     }
+    function addToCart(id){
+        let temProducts = [...items.products]
+        const index = temProducts.indexOf(getDetail(id))
+        const product = temProducts[index]
+        product.inCart = true;
+        product.count = 1;
+        const price = product.price;
+        product.total = price;
+        setItems((prev) =>{
+            return {
+               ...prev, products: temProducts, cart: [...items.cart, product]
+
+            }
+        })
+
+    }
+    
+    const openModal = (id)=>{
+
+    }
 
     const setProducts=() =>{
         let temProducts = [];
@@ -38,15 +61,14 @@ function ProductProvider({children}){
         setItems(()=>{
             return {
                 products:temProducts,
-                detailProduct: detailProduct
+                detailProduct: detailProduct,
+                cart : []
              }
         })
+
+    
     }
 
-    function addToCart(id){
-        let tempPtoducts
-    }
-    
     return(
         <ProductContext.Provider value={{...items, handleDetail, addToCart}}>
             {children}
