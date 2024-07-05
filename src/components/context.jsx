@@ -62,7 +62,9 @@ function ProductProvider({children}){
             return {
                 products:temProducts,
                 detailProduct: detailProduct,
-                cart : []
+                cart : [],
+                modalOpen: true,
+                modalProduct:detailProduct
              }
         })
 
